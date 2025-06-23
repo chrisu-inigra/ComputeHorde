@@ -11,19 +11,8 @@ from typing import ClassVar, Protocol
 import bittensor_wallet
 from pydantic import BaseModel, JsonValue, field_serializer, field_validator
 
+from compute_horde_core.compatibility import StrEnum
 from compute_horde_core.streaming import StreamingDetails
-
-# Backward compatible StrEnum with Python 3.10
-try:
-    from enum import StrEnum
-except ImportError:
-    from enum import Enum as Enum
-
-    class _StrEnum(str, Enum):
-        def __str__(self) -> str:
-            return str(self.value)
-
-    StrEnum = _StrEnum
 
 
 class SignatureScope(StrEnum):

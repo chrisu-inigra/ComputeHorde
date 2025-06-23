@@ -10,24 +10,13 @@ import pydantic
 
 from compute_horde_core import output_upload as compute_horde_output_upload
 from compute_horde_core import volume as compute_horde_volume
+from compute_horde_core.compatibility import StrEnum
 
 try:
     from typing import Self
 except ImportError:
     # Backward compatible with python 3.10
     from typing_extensions import Self  # noqa: UP035
-
-# Backward compatible StrEnum with Python 3.10
-try:
-    from enum import StrEnum
-except ImportError:
-    from enum import Enum as Enum
-
-    class _StrEnum(str, Enum):
-        def __str__(self) -> str:
-            return str(self.value)
-
-    StrEnum = _StrEnum
 
 VOLUME_MOUNT_PATH_PREFIX = "/volume/"
 OUTPUT_MOUNT_PATH_PREFIX = "/output/"
