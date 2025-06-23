@@ -23,11 +23,9 @@ try:
 except ImportError:
     from enum import Enum as Enum
 
-
     class _StrEnum(str, Enum):
         def __str__(self) -> str:
             return str(self.value)
-
 
     StrEnum = _StrEnum
 
