@@ -10,4 +10,5 @@ else:
         def __str__(self) -> str:
             return str(self.value)
 
+
 __all__ = ["StrEnum"]
