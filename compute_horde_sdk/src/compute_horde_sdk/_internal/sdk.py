@@ -40,7 +40,7 @@ try:
     from typing import Self
 except ImportError:
     # Backward compatible with python 3.10
-    from typing_extensions import Self
+    from typing_extensions import Self  # noqa: UP035
 
 logger = logging.getLogger(__name__)
 

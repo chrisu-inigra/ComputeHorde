@@ -13,13 +13,12 @@ from cryptography.hazmat.primitives.asymmetric.rsa import RSAPrivateKey
 from cryptography.x509 import Certificate
 from cryptography.x509.oid import NameOID
 
-
 try:
     from datetime import UTC
 except ImportError:
     # Backward compatible with python 3.10
     from datetime import timezone
-    UTC = timezone.utc
+    UTC = timezone.utc  # noqa: UP017
 
 logger = logging.getLogger(__name__)
 
