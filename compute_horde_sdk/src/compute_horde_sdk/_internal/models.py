@@ -19,15 +19,17 @@ except ImportError:
 
 # Backward compatible StrEnum with Python 3.10
 try:
-    from enum import StrEnum as _StrEnum
+    from enum import StrEnum
 except ImportError:
     from enum import Enum as Enum
+
 
     class _StrEnum(str, Enum):
         def __str__(self) -> str:
             return str(self.value)
 
-StrEnum = _StrEnum
+
+    StrEnum = _StrEnum
 
 VOLUME_MOUNT_PATH_PREFIX = "/volume/"
 OUTPUT_MOUNT_PATH_PREFIX = "/output/"

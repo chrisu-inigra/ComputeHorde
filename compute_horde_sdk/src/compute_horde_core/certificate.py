@@ -18,6 +18,7 @@ try:
 except ImportError:
     # Backward compatible with python 3.10
     from datetime import timezone
+
     UTC = timezone.utc  # noqa: UP017
 
 logger = logging.getLogger(__name__)
