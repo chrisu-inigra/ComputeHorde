@@ -17,7 +17,7 @@ from compute_horde_core.streaming import StreamingDetails
 if sys.version_info >= (3, 11):  # noqa: UP036
     from enum import StrEnum
 else:
-    from backports.strenum import StrEnum
+    from backports.strenum import StrEnum  # noqa: UP035
 
 
 class SignatureScope(StrEnum):

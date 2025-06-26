@@ -1,8 +1,9 @@
 import asyncio
 import ipaddress
 import logging
+import sys
 import tempfile
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 from pathlib import Path
 
 import aiohttp
@@ -12,6 +13,11 @@ from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.primitives.asymmetric.rsa import RSAPrivateKey
 from cryptography.x509 import Certificate
 from cryptography.x509.oid import NameOID
+
+if sys.version_info >= (3, 11):  # noqa: UP036
+    from datetime import UTC
+else:
+    from datetime.timezone import utc as UTC
 
 logger = logging.getLogger(__name__)
 
@@ -108,8 +114,8 @@ def generate_certificate(alternative_name: str) -> tuple[Certificate, RSAPrivate
     builder = x509.CertificateBuilder()
     builder = builder.subject_name(x509.Name([x509.NameAttribute(NameOID.COMMON_NAME, "localhost")]))
     builder = builder.issuer_name(x509.Name([x509.NameAttribute(NameOID.COMMON_NAME, "localhost")]))
-    builder = builder.not_valid_before(datetime.now(timezone.utc))
-    builder = builder.not_valid_after(datetime.now(timezone.utc) + timedelta(days=365))
+    builder = builder.not_valid_before(datetime.now(UTC))
+    builder = builder.not_valid_after(datetime.now(UTC) + timedelta(days=365))
     builder = builder.serial_number(x509.random_serial_number())
     builder = builder.public_key(private_key.public_key())
     builder = builder.add_extension(x509.BasicConstraints(ca=False, path_length=None), critical=True)

@@ -16,7 +16,7 @@ if sys.version_info >= (3, 11):  # noqa: UP036
     from enum import StrEnum
     from typing import Self
 else:
-    from backports.strenum import StrEnum
+    from backports.strenum import StrEnum  # noqa: UP035
     from typing_extensions import Self  # noqa: UP035
 
 VOLUME_MOUNT_PATH_PREFIX = "/volume/"
