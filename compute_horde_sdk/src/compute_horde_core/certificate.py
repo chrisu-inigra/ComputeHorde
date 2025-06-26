@@ -17,7 +17,9 @@ from cryptography.x509.oid import NameOID
 if sys.version_info >= (3, 11):  # noqa: UP036
     from datetime import UTC
 else:
-    from datetime.timezone import utc as UTC
+    from datetime import timezone
+
+    UTC = timezone.utc  # noqa: UP017
 
 logger = logging.getLogger(__name__)
 
